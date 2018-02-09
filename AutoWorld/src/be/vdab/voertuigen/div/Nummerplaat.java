@@ -42,7 +42,8 @@ public class Nummerplaat implements Comparable<Nummerplaat>, Serializable {
     
     @Override
     public int hashCode(){
-        return (5*13) + Objects.hashCode(this.nummerplaat);
+        int hash = 5;
+        return (hash*43) + Objects.hashCode(this.nummerplaat);
     }
     
     @Override
