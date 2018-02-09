@@ -12,7 +12,7 @@ import java.io.Serializable;
  *
  * @author bob.lamsens
  */
-public class Voertuig implements Comparable<Voertuig>, Serializable {
+public abstract class Voertuig implements Comparable<Voertuig>, Serializable {
     private final Nummerplaat nummerplaat = Div.INSTANCE.generateNummerplaat();
     private String merk;
     private int aankoopprijs;
