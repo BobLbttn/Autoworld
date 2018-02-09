@@ -9,6 +9,13 @@ package be.vdab.util;
  *
  * @author bob.lamsens
  */
-public class VolumeException {
+public class VolumeException extends Exception {
+
+    public VolumeException() {
+    }
+
+    public VolumeException(String message) {
+        super(message);
+    }
     
 }
