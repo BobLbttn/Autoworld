@@ -10,5 +10,6 @@ package be.vdab.util;
  * @author bob.lamsens
  */
 public interface Laadbaar {
-    
+    Volume getLaadVolume();
+    void setLaadVolume(Volume v);
 }
