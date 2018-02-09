@@ -10,5 +10,5 @@ package be.vdab.util;
  * @author bob.lamsens
  */
 public enum Maat {
-    
+    centimeter, decimeter, meter;
 }
