@@ -10,5 +10,15 @@ package be.vdab.util;
  * @author bob.lamsens
  */
 public enum Maat {
-    centimeter, decimeter, meter;
+    centimeter(1), decimeter(10), meter(100);
+    private final int factor;
+
+    private Maat(int factor) {
+        this.factor = factor;
+    }
+
+    public int getFactor() {
+        return factor;
+    }
+    
 }
