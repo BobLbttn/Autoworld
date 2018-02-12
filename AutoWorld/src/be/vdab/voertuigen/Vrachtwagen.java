@@ -24,22 +24,22 @@ public class Vrachtwagen extends Voertuig implements Laadbaar{
         setAantalAssen(aantalAssen);
     }
 
-    public int getMaximaalToegelatenAssen() {
+    public final int getMaximaalToegelatenAssen() {
         return maximaalToegelatenAssen;
     }
 
-    public void setMaximaalToegelatenAssen(int maximaalToegelatenAssen) {
+    public final void setMaximaalToegelatenAssen(int maximaalToegelatenAssen) {
         if (maximaalToegelatenAssen > 0)
             this.maximaalToegelatenAssen = maximaalToegelatenAssen;
         else
             System.out.println("ongeldig max toegelaten aantal assen.");
     }
 
-    public int getAantalAssen() {
+    public final int getAantalAssen() {
         return aantalAssen;
     }
 
-    public void setAantalAssen(int aantalAssen) {
+    public final void setAantalAssen(int aantalAssen) {
         if (aantalAssen > 0)
             this.aantalAssen = aantalAssen;
         else

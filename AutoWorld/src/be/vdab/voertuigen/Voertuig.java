@@ -22,22 +22,22 @@ public abstract class Voertuig implements Comparable<Voertuig>, Serializable {
         setAankoopprijs(aankoopprijs);
     }
 
-    public String getMerk() {
+    public final String getMerk() {
         return merk;
     }
 
-    public void setMerk(String merk) {
+    public final void setMerk(String merk) {
         if (!merk.isEmpty())
             this.merk = merk;
         else
             System.out.println("merk is niet ingevuld");
     }
 
-    public int getAankoopprijs() {
+    public final int getAankoopprijs() {
         return aankoopprijs;
     }
 
-    public void setAankoopprijs(int aankoopprijs) {
+    public final void setAankoopprijs(int aankoopprijs) {
         if (aankoopprijs >= 0)
             this.aankoopprijs = aankoopprijs;
         else
