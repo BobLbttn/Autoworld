@@ -15,7 +15,7 @@ import java.util.Objects;
 public class Nummerplaat implements Comparable<Nummerplaat>, Serializable {
     
     private static final long serialVersionUID = 1L; 
-    private String nummerplaat;
+    private final String nummerplaat;
     
     protected Nummerplaat(String nummerplaat) {
         this.nummerplaat = nummerplaat;
@@ -34,7 +34,7 @@ public class Nummerplaat implements Comparable<Nummerplaat>, Serializable {
     public boolean equals(Object o){
         if (o instanceof Nummerplaat){
             Nummerplaat np = (Nummerplaat) o;
-            return np.equals(nummerplaat);
+            return nummerplaat.equals(np.getNummerplaat());
         }
         else
             return false;
