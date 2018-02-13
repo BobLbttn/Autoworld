@@ -6,6 +6,8 @@
 package be.vdab.voertuigen;
 
 import be.vdab.util.*;
+import be.vdab.util.mens.Mens;
+import java.awt.Color;
 
 /**
  *
@@ -14,8 +16,9 @@ import be.vdab.util.*;
 public class Pickup extends Personenwagen implements Laadbaar{
     private Volume laadvolume;
 
-    public Pickup(Volume laadvolume, int zitplaatsen, String merk, int aankoopprijs) {
-        super(zitplaatsen, merk, aankoopprijs);
+    public Pickup(String merk, int aankoopprijs, int zitplaatsen, 
+                    Color kleur, Volume laadvolume, Mens...inzittende  ) {
+        super(merk, aankoopprijs, kleur, zitplaatsen,inzittende);
         this.laadvolume = laadvolume;
     }
 

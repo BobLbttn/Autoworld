@@ -15,7 +15,7 @@ import java.time.format.DateTimeFormatter;
  */
 public class Datum implements Comparable<Datum>, Serializable{
     private static final long serialVersionUID = 1L;
-    private static final LocalDate START_OF_TIME = LocalDate.of(1583, 1, 1);
+    private static final LocalDate START_OF_TIME = LocalDate.of(1582, 12, 31);
     private static final LocalDate END_OF_TIME = LocalDate.of(4099, 1, 1);
     private final LocalDate currentDate;
 
@@ -24,7 +24,7 @@ public class Datum implements Comparable<Datum>, Serializable{
         try{
             LocalDate setDate = LocalDate.of(jaar,maand,dag);
             if (setDate.isAfter(START_OF_TIME) && setDate.isBefore(END_OF_TIME)){
-                currentDate = LocalDate.of(jaar,maand,dag);
+                currentDate = setDate;
             }
             else{
                 throw new DatumException("buiten de limieten.");

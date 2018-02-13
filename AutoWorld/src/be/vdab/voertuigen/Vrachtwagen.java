@@ -6,6 +6,7 @@
 package be.vdab.voertuigen;
 
 import be.vdab.util.*;
+import be.vdab.util.mens.Mens;
 
 /**
  *
@@ -13,12 +14,15 @@ import be.vdab.util.*;
  */
 public class Vrachtwagen extends Voertuig implements Laadbaar{
 
+    private static final int MAX_AANTAL_ZITPLAATSEN=3;
     private Volume laadvolume;
     private int maximaalToegelatenAssen;
     private int aantalAssen;
 
-    public Vrachtwagen(Volume laadvolume, int maximaalToegelatenAssen, int aantalAssen, String merk, int aankoopprijs) {
-        super(merk, aankoopprijs);
+    public Vrachtwagen(String merk, int aankoopprijs, int zitplaatsen, 
+                          Volume laadvolume, int maximaalToegelatenAssen, 
+                                       int aantalAssen, Mens...inzittende) {
+        super(merk, aankoopprijs, zitplaatsen, inzittende);
         this.laadvolume = laadvolume;
         setMaximaalToegelatenAssen(maximaalToegelatenAssen);
         setAantalAssen(aantalAssen);
@@ -44,6 +48,10 @@ public class Vrachtwagen extends Voertuig implements Laadbaar{
             this.aantalAssen = aantalAssen;
         else
             System.out.println("ongeldig aantal assen.");
+    }
+    @Override
+    public int getMAX_AANTAL_ZITPLAATSEN() {
+        return MAX_AANTAL_ZITPLAATSEN;
     }
     
     @Override

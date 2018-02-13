@@ -5,26 +5,33 @@
  */
 package be.vdab.voertuigen;
 
+import be.vdab.util.mens.Mens;
+import java.awt.Color;
 /**
  *
  * @author bob.lamsens
  */
 public class Personenwagen extends Voertuig {
-    private int zitplaatsen=1;
+    private static final int MAX_AANTAL_ZITPLAATSEN=8;
+    private Color kleur;
 
-    public Personenwagen(int zitplaatsen, String merk, int aankoopprijs) {
-        super(merk, aankoopprijs);
-        setZitplaatsen(zitplaatsen);
+    public Personenwagen(String merk, int aankoopprijs, Color kleur,
+                                int zitplaatsen,  Mens...inzittende) {
+        
+        super(merk, aankoopprijs, zitplaatsen,inzittende);
+        setKleur(kleur);
     }
 
-    public int getZitplaatsen() {
-        return zitplaatsen;
+    public final Color getKleur() {
+        return kleur;
     }
 
-    public void setZitplaatsen(int zitplaatsen) {
-        if (zitplaatsen > 0)
-            this.zitplaatsen = zitplaatsen;
-        else
-            System.out.println("Een personenauto zonder zitplaatsen is absurd");
+    public final void setKleur(Color kleur) {
+        this.kleur = kleur;
+    }
+
+    @Override
+    public int getMAX_AANTAL_ZITPLAATSEN() {
+        return MAX_AANTAL_ZITPLAATSEN;
     }
 }

@@ -5,16 +5,22 @@
  */
 package be.vdab;
 
-import be.vdab.schoolgerief.Boekentas;
 import be.vdab.util.*;
+import be.vdab.util.mens.Mens;
+import static be.vdab.util.mens.Rijbewijs.A;
+import static be.vdab.util.mens.Rijbewijs.B;
+import static be.vdab.util.mens.Rijbewijs.BE;
+import static be.vdab.util.mens.Rijbewijs.C;
+import static be.vdab.util.mens.Rijbewijs.CE;
+import static be.vdab.util.mens.Rijbewijs.D;
 import be.vdab.voertuigen.*;
+import java.awt.Color;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.Comparator;
 import java.util.Set;
 import java.util.TreeSet;
 
@@ -25,26 +31,48 @@ import java.util.TreeSet;
 public class AutoworldMain {
     public static void main (String[] args){
         
+        Mens BESTUURDER_A = new Mens("Andree",A);
+        Mens BESTUURDER_AB = new Mens("Amadeus",A,B);
+        Mens BESTUURDER_B = new Mens("Bernard",B);
+        Mens BESTUURDER_BC = new Mens("Beatrice-Clothilde",B,C);
+        Mens BESTUURDER_C = new Mens("Catherina",C);
+        Mens BESTUURDER_D = new Mens("Didier",D);
+        Mens BESTUURDER_BE = new Mens("Beatrice-Emanuella",BE);
+        Mens BESTUURDER_BBE = new Mens("Babette-Emanuella",B,BE);
+        Mens BESTUURDER_CE = new Mens("Cederic-Eduard",CE);
+        Mens BESTUURDER_DE = new Mens("Dominique-Emille",CE);
+        Mens BESTUURDER_BBECCE = new Mens("Ammelie",B,BE,C,CE);
+        Mens INGEZETENE_A = new Mens("Anita");
+        Mens INGEZETENE_B = new Mens("Bert");
+        Mens INGEZETENE_C = new Mens("Christina");
+        Mens INGEZETENE_D = new Mens("Duts");
+        Mens INGEZETENE_E = new Mens("Elsa");
+        Mens INGEZETENE_F = new Mens("Fred");
+        Mens INGEZETENE_G = new Mens("Gerda");
+        Mens INGEZETENE_H = new Mens("Hedwig");
+        Mens INGEZETENE_I = new Mens("Ingrid");
+        
         Set<Voertuig> voertuigen = new TreeSet<>();
         Set<Voertuig> voertuigen2 = new TreeSet<>();
-        List<Laadbaar> laadtest = new ArrayList <>();
         
-        Voertuig v1 = new Personenwagen(4, "Opel Corsa", 15000);
+        Voertuig v1 = new Personenwagen("Opel Corsa", 15000, Color.BLACK, 4, 
+                                        BESTUURDER_B, INGEZETENE_A, INGEZETENE_B);
         voertuigen.add(v1);
         
-        Voertuig v2 = new Personenwagen(6, "VW Touran", 25000);
+        Voertuig v2 = new Personenwagen("VW Touran", 25000, Color.BLACK, 4, 
+                                        BESTUURDER_BC, INGEZETENE_C, INGEZETENE_D, INGEZETENE_E);
         voertuigen.add(v2);
         
         Volume vol1 = new Volume(20,20,5, Maat.decimeter);
-        Voertuig v3 = new Pickup(vol1, 4, "Nissan Navara", 30000);
+        Voertuig v3 = new Pickup("Nissan Navara", 30000, 4, Color.GRAY, vol1, BESTUURDER_C );
         voertuigen.add(v3);
         
         Volume vol2 = new Volume(150,200,60, Maat.centimeter);
-        Voertuig v4 = new Pickup(vol2, 5, "VW Amarok", 35000);
+        Voertuig v4 = new Pickup("VW Amarok", 35000, 4, Color.BLUE, vol2, BESTUURDER_CE, INGEZETENE_F );
         voertuigen.add(v4);
         
         Volume vol3 = new Volume(4,2,2, Maat.meter);
-        Voertuig v5 = new Vrachtwagen(vol3, 4, 4, "DAF", 100000);
+        Voertuig v5 = new Vrachtwagen("DAF", 100000, 2, vol3, 4, 4, BESTUURDER_D );
         voertuigen.add(v5);
         
         for (Voertuig eenVoertuig:voertuigen)
@@ -85,35 +113,11 @@ public class AutoworldMain {
         }
 
         System.out.println();
-        System.out.println("test laadbaar");
+        System.out.println("sorteer op Merk");
+
+        Comparator cv = voertuigen2.iterator().next().getMerkComparator();
+        voertuigen2.stream().sorted(cv).forEach(voertuig -> {Voertuig v = (Voertuig)voertuig;System.out.println(v.getMerk() + " " +v.toString());});
         
-        laadtest.add((Pickup)v3);
-        laadtest.add((Pickup)v4);
-        laadtest.add((Vrachtwagen)v5);
-        
-        Boekentas b1 = new Boekentas("rood",new Volume(50,10,60,Maat.centimeter) );
-        laadtest.add (b1);
-        
-        for (Laadbaar lading:laadtest){
-            
-            if (lading instanceof Voertuig){
-                Voertuig v = (Voertuig) lading;
-                try{
-                    System.out.println(v.getMerk() + " " + Long.toString(lading.getLaadVolume().getVolume()));
-                }
-                catch (Exception e){
-                    e.printStackTrace();
-                }
-            }
-            else{
-                try{
-                    System.out.println ("boekentas volume: " + Long.toString(lading.getLaadVolume().getVolume()));
-                }
-                catch (Exception e){
-                    e.printStackTrace();
-                }
-            }
-        }
         System.out.println();
         System.out.println("datum test");
         try{
