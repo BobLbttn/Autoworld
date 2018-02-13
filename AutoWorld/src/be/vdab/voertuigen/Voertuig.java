@@ -33,6 +33,7 @@ public abstract class Voertuig implements Comparable<Voertuig>, Serializable {
                                    throws IllegalArgumentException {
         if (zitplaatsen < this.getMAX_AANTAL_ZITPLAATSEN()){    
             setAantalZitplaatsen(zitplaatsen);
+            setMerk(merk);
             LinkedList<Mens> llInzittende = new LinkedList(Arrays.asList(inzittende));
             try{
                 setInzittende(llInzittende);
@@ -40,7 +41,6 @@ public abstract class Voertuig implements Comparable<Voertuig>, Serializable {
             catch(MensException me){
                 System.out.println(me.getMessage());
             }
-            setMerk(merk);
             setAankoopprijs(aankoopprijs);
         }
         else
@@ -87,7 +87,7 @@ public abstract class Voertuig implements Comparable<Voertuig>, Serializable {
             if (inzittende.getFirst().hasRijbewijs())
                 this.inzittende = inzittende;
             else
-                throw new MensException("eerste inzittende geen bestuurder");
+                throw new MensException("eerste inzittende van de " + merk +" is geen bestuurder");
         }
         else
             throw new MensException("teveel inzittende");
@@ -178,10 +178,10 @@ public abstract class Voertuig implements Comparable<Voertuig>, Serializable {
     }
 
     public Comparator getMerkComparator(){
-        return this.new MerkComparator();
+        return new MerkComparator();
     }
 
     public Comparator getAankoopprijsComparator(){
-        return this.new AankoopprijsComparator();
+        return new AankoopprijsComparator();
     }
 }

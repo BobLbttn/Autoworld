@@ -21,6 +21,8 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.Comparator;
+import java.util.Iterator;
+import java.util.List;
 import java.util.Set;
 import java.util.TreeSet;
 
@@ -118,6 +120,17 @@ public class AutoworldMain {
         Comparator cv = voertuigen2.iterator().next().getMerkComparator();
         voertuigen2.stream().sorted(cv).forEach(voertuig -> {Voertuig v = (Voertuig)voertuig;System.out.println(v.getMerk() + " " +v.toString());});
         
+        System.out.println();
+        System.out.println("geef inzittende van de opel corsa mbv Iterator");
+        
+        //get eerste voertuig (corsa)
+        Voertuig v = voertuigen2.iterator().next();
+        for(Iterator<Mens> m = v.getInzittende().iterator(); m.hasNext(); )
+        {
+            System.out.println(m.next().getNaam());
+        }
+
+ 
         System.out.println();
         System.out.println("datum test");
         try{
